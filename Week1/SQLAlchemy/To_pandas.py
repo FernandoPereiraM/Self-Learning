@@ -14,5 +14,6 @@ output = conn.execute(query)
 results = output.fetchall()
 #------------------------------------------------#
 data = pd.DataFrame(results)
-print(data)
+data.columns = results[0].keys()
 data
+print(data)

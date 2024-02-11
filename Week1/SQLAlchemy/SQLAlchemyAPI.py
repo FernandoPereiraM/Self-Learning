@@ -38,3 +38,21 @@ query = Student.select().order_by(db.desc(Student.columns.Name))
 output = conn.execute(query)
 print(output.fetchall())
 #------------------------------------------------------------------#
+
+#-------------------sum, avg, count, min, max----------------------#
+query = db.select([db.func.sum(Student.columns.Id)])
+output = conn.execute(query)
+print(output.fetchall())
+#------------------------------------------------------------------#
+
+#-------------------group by---------------------------------------#
+query = db.select([db.func.sum(Student.columns.Id),Student.columns.Major]).group_by(Student.columns.Pass)
+output = conn.execute(query)
+print(output.fetchall())
+#------------------------------------------------------------------#
+
+#-------------------distinct---------------------------------------#
+query = db.select([Student.columns.Major.distinct()])
+output = conn.execute(query)
+print(output.fetchall())
+#------------------------------------------------------------------#
