@@ -21,9 +21,8 @@ values_list = [{'Id':'2', 'Name':'Nisha', 'Major':"Science", 'Pass':False},
               {'Id':'3', 'Name':'Natasha', 'Major':"Math", 'Pass':True},
               {'Id':'4', 'Name':'Ben', 'Major':"English", 'Pass':False}]
 Result = conn.execute(query,values_list)
-output = conn.execute(db.text("SELECT * FROM Student"))
-#output = conn.execute(Student.select()).fetchall()
-print(output.fetchall())
+output = conn.execute(Student.select()).fetchall()
+print(output)
 
 conn.commit()
 

@@ -13,5 +13,7 @@ Student = db.Table('Student', metadata,
 
 metadata.create_all(engine) 
 
+conn.commit()
+
 output = conn.execute(Student.select()).fetchall()
 print(output)
