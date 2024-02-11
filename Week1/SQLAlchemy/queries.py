@@ -7,7 +7,7 @@ Student = db.Table('Student', metadata, autoload_with=engine)
 
 metadata.create_all(engine) 
 
-#Custome Querries!
+#Custom Querries!
 output = conn.execute(db.text("SELECT * FROM Student"))
 print(output.fetchall())
 

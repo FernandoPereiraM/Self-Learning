@@ -7,6 +7,9 @@ metadata = db.MetaData()
 division = db.Table('divisions', metadata, autoload_with=engine)
 match = db.Table('matchs', metadata,autoload_with=engine)
 
+
+#Connecting two tables
+#Running complex query
 query = db.select([division,match]).\
 select_from(division.join(match,division.columns.division == match.columns.Div)).\
 where(db.and_(division.columns.division == "E1", match.columns.season == 2009 )).\
