@@ -1,3 +1,4 @@
+import sqlalchemy
 import sqlalchemy as db
 engine = db.create_engine('sqlite:///datacamp.sqlite')
 conn = engine.connect()
@@ -11,9 +12,6 @@ Student = db.Table('Student', metadata,
               )
 
 metadata.create_all(engine) 
-
-query = db.insert(Student).values(Id=1, Name='Matthew', Major="English", Pass=True)
-Result = conn.execute(query)
 
 output = conn.execute(Student.select()).fetchall()
 print(output)
