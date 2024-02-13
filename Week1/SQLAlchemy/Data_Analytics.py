@@ -21,3 +21,27 @@ data = pd.DataFrame(results)
 data.columns = results[0].keys()
 data
 print(data)
+
+#Plot with that info
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.set_theme(style="whitegrid")
+
+f, ax = plt.subplots(figsize=(15, 6))
+plt.xticks(rotation=90)
+sns.set_color_codes("pastel")
+sns.barplot(x="HomeTeam", y="FTHG", data=data,
+            label="Home Team Goals", color="b")
+
+sns.barplot(x="HomeTeam", y="FTAG", data=data,
+            label="Away Team Goals", color="r")
+ax.legend(ncol=2, loc="upper left", frameon=True)
+ax.set(ylabel="", xlabel="")
+sns.despine(left=True, bottom=True)
+plt.show()
+
+#to .csv
+output = conn.execute("SELECT * FROM matchs WHERE HomeTeam LIKE 'Norwich'")
+results = output.fetchall()
+data = pd.DataFrame(results)
+data.columns = results[0].keys()
