@@ -1,0 +1,21 @@
+# Carpeta de dependencias
+node_modules/
+
+# Archivos de configuración local
+.env
+
+# Archivos de registro y errores
+logs/
+*.log
+
+# Archivos generados automáticamente
+dist/
+build/
+
+# Archivos de respaldo
+*.bak
+*.backup
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
