@@ -61,6 +61,11 @@ router.get('/:ordersId',(req, res, next) =>{
     .select("_id product quantity")
     .exec()
     .then(order => {
+        if(!order){
+            return res.status(404).json({
+                message: 'Order not found!',
+            });
+        }
         res.status(200).json({
             order: order
         });
