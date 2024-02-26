@@ -1,38 +1,75 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose')
+
+const Order = require('../models/order')
+const Product = require('../models/product');
+const order = require('../models/order');
 
 router.get('/',(req, res, next) => {
-    res.status(200).json({
-        message: 'Handling GET request to /orders'
+    Order
+    .find()
+    .select("_id product quantity")
+    .exec()
+    .then(docs => {
+        res.status(200).json(docs);
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: err
+        });
     });
 });
 
-router.post('/',(req, res, next) => {
-    const order = {
-        productId: req.body.productId,
-        quantity: req.body.quantity
-    };
-
-    res.status(200).json({
-        message: 'Handling POST request to /orders',
-        order: order
+router.post('/', (req, res, next) => {
+    Product.findById(req.body.productId)
+    .then(product => {
+        if(!product){
+            return res.status(404).json({
+                message: 'Product not found!',
+            });
+        }
+        const order = new Order({
+            _id: new mongoose.Types.ObjectId(),
+            product: req.body.productId,
+            quantity: req.body.quantity
+        });
+        return order
+        .save()
+    })
+    .then(result => {
+        res.status(201).json({
+            message: 'Order created successfully',
+            createdOrder: {
+                _id: result._id,
+                product: result.product,
+                quantity: result.quantity
+            }
+        });
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: err
+        });
     });
 });
 
 router.get('/:ordersId',(req, res, next) =>{
-    const pk = req.params.productsId;
-    if(pk === 'special'){
+    const pk = req.params.ordersId;
+    Order
+    .findById(pk)
+    .select("_id product quantity")
+    .exec()
+    .then(order => {
         res.status(200).json({
-            message: 'Handling GET specialid by orders Id',
-            pk: pk
-        })
-    }else{
-        res.status(200).json({
-            message: 'Handling GET by orders Id',
-            pk: pk
-        })
-    }
-    
+            order: order
+        });
+    })
+    .catch(err => {
+        res.status(500).json({
+            message: "Error!"
+        });
+    });
 })
 
 router.patch('/:ordersId',(req, res, next) =>{
@@ -43,11 +80,20 @@ router.patch('/:ordersId',(req, res, next) =>{
    
 })
 
-router.delete('/:productsId',(req, res, next) =>{
-    res.status(200).json({
-        message: 'Deleted orders by Id',
-        pk: pk
+router.delete('/:ordersId',(req, res, next) =>{
+    const id = req.params.ordersId;
+    Order.deleteOne({
+        _id: id
     })
+    .exec()
+    .then(result => {
+        res.status(200).json({
+            message: "Order Deleted!"
+        });
+    })
+    .catch(err => {
+        res.status(500).json(err);
+    });
    
 })
 
