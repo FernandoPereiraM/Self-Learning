@@ -60,7 +60,7 @@ To challenge myself and reinforce my learning, I'll be tackling coding challenge
 
 ## 📊 Progress
 
-I'll be tracking my progress and updating this repository regularly. You can find my progress logs in the [Progress](./progress.md) file.
+I'll be tracking my progress and updating this repository regularly.
 
 ## 🤝 Contributing
 
