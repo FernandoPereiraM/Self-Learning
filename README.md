@@ -4,16 +4,6 @@
 
 Welcome to my self-learning repository! 🚀 This is where I document my journey of learning and practicing various technologies, concepts, and skills in software development. Whether it's brushing up on programming languages, exploring new frameworks, or diving into algorithms, you'll find it all here!
 
-## 📋 Table of Contents
-
-- [Goals](#goals)
-- [Technologies](#technologies)
-- [Projects](#projects)
-- [Resources](#resources)
-- [Challenges](#challenges)
-- [Progress](#progress)
-- [Contributing](#contributing)
-
 ## 🎯 Goals
 
 My primary goals for this repository are:
