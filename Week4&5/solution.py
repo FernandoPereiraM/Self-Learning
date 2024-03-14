@@ -45,6 +45,7 @@ def topArticles(limit):
         page_number += 1
 
     # Ordenar los artículos usando la función de orden personalizada sort_articles
+    # https://www.freecodecamp.org/espanol/news/ordenar-listas-en-python-como-ordenar-por-descendente-o-ascendente/
     all_articles.sort(key=sort_articles, reverse=True)
     
     # Obtener solo los títulos de los artículos, hasta el límite especificado
