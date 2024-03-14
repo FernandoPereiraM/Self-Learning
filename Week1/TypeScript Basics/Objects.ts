@@ -18,17 +18,17 @@ console.log(StatusCodes.NotFound);
 console.log(StatusCodes.Success);
 
 // Interface
-interface Rectangle {
+interface Rectangle2 {
     height: number,
     width: number
 };
 
-const rectangle: Rectangle = {
+const rectangle: Rectangle2 = {
     height: 20,
     width: 10
 };
 
-interface ColoredRectangle extends Rectangle {
+interface ColoredRectangle extends Rectangle2 {
     color: string
 }
 
